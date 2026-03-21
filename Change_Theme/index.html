@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        }
+    </script>
+</head>
+<style>
+    :root {
+        --bg: #ffffff;
+        --text: #111111;
+        --card: #f5f5f5;
+        --border: #dddddd;
+        --btn-bg: #e0e0e0;
+        --btn-text: #111111;
+    }
+
+    .dark {
+        --bg: #121212;
+        --text: #e0e0e0;
+        --card: #1e1e1e;
+        --border: #2a2a2a;
+        --btn-bg: #2c2c2c;
+        --btn-text: #ffffff;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .card {
+        width: 800px;
+        background-color: var(--card);
+        color: var(--text);
+        margin: 50px auto;
+        padding: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 18px;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #theme-switch {
+        border: none;
+        background-color: var(--btn-bg);
+        color: var(--btn-text);
+        padding: 10px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+    }
+
+    #theme-switch span:first-child {
+        display: none;
+    }
+
+    .dark #theme-switch span:last-child {
+        display: none;
+    }
+
+    .dark #theme-switch span:first-child {
+        display: block;
+    }
+</style>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <h2>AI đang thay đổi ngành công nghệ Việt Nam như thế nào</h2>
+            <button id="theme-switch">
+                <span class="material-symbols-outlined">
+                    light_mode
+                </span>
+                <span class="material-symbols-outlined">
+                    dark_mode
+                </span>
+            </button>
+        </div>
+    </div>
+    <script>
+        let theme = localStorage.getItem("theme") || "light";
+        const themeSwitch = document.getElementById("theme-switch");
+        function enableDarkMode() {
+            document.body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+            theme = "dark";
+        }
+
+        function disableDarkMode() {
+            document.body.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+            theme = "light"
+        }
+
+        theme === "light" ? disableDarkMode() : enableDarkMode();
+
+        themeSwitch.addEventListener("click", () => {
+            theme === "light" ? enableDarkMode() : disableDarkMode();
+        });
+
+    </script>
+</body>
+
+</html>
